@@ -6,8 +6,9 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-ARG BUILD_CONFIGURATION=Release
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Lab6-7Logic.csproj", "Lab6-7Logic/"]
 RUN dotnet restore "Lab6-7Logic/Lab6-7Logic.csproj"
