@@ -6,11 +6,11 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["Lab6-7Logic.csproj", "Lab6-7Logic/"]
-RUN dotnet restore "./Lab6-7Logic/./Lab6-7Logic.csproj"
+RUN dotnet restore "/Lab6-7Logic.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "./Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/build
