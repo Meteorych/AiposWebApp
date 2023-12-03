@@ -13,7 +13,7 @@ COPY ["Lab6-7Logic.csproj", "Lab6-7Logic/"]
 RUN dotnet restore "./Lab6-7Logic/./Lab6-7Logic.csproj"
 COPY . .
 WORKDIR "/src/Lab6-7Logic"
-RUN dotnet build "./Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
