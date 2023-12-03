@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Directors
+namespace Lab6_7Logic.Pages.Actors
 {
     public class DeleteModel : PageModel
     {
@@ -15,7 +15,7 @@ namespace Lab6_7Logic.Pages.Directors
         }
 
         [BindProperty]
-        public Director Director { get; set; } = default!;
+        public Actor Actor { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -24,15 +24,15 @@ namespace Lab6_7Logic.Pages.Directors
                 return NotFound();
             }
 
-            var director = await _context.Director.FirstOrDefaultAsync(m => m.Id == id);
+            var actor = await _context.Actor.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (director == null)
+            if (actor == null)
             {
                 return NotFound();
             }
             else
             {
-                Director = director;
+                Actor = actor;
             }
             return Page();
         }
@@ -44,11 +44,11 @@ namespace Lab6_7Logic.Pages.Directors
                 return NotFound();
             }
 
-            var director = await _context.Director.FindAsync(id);
-            if (director != null)
+            var actor = await _context.Actor.FindAsync(id);
+            if (actor != null)
             {
-                Director = director;
-                _context.Director.Remove(Director);
+                Actor = actor;
+                _context.Actor.Remove(Actor);
                 await _context.SaveChangesAsync();
             }
 

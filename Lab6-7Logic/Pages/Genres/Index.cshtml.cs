@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Directors
+namespace Lab6_7Logic.Pages.Genres
 {
     public class IndexModel : PageModel
     {
@@ -13,11 +13,11 @@ namespace Lab6_7Logic.Pages.Directors
             _context = context;
         }
 
-        public IList<Director> Director { get;set; } = default!;
+        public IList<Genre> Genre { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Director = await _context.Director.ToListAsync();
+            Genre = await _context.Genre.ToListAsync();
         }
     }
 }

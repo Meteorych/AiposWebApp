@@ -2,41 +2,41 @@
 using Lab6_7Logic.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lab6_7Logic.Pages.Directors
+namespace Lab6_7Logic.Pages.Actors
 {
-    public class SeedDataDirectors
+    public class SeedDataActors
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using var context = new MovieLogicContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<MovieLogicContext>>());
-            if (context?.Director == null)
+            if (context?.Actor == null)
             {
                 throw new ArgumentNullException(nameof(context), "Null movie logic context!");
             }
 
             // Look for any movies.
-            if (context.Director.Any())
+            if (context.Actor.Any())
             {
                 return;   // DB has been seeded
             }
 
-            context.Director.AddRange(
-                new Director
+            context.Actor.AddRange(
+                new Actor
                 {
-                    FirstName = "John",
-                    LastName = "Doe",
+                    FirstName = "Bill",
+                    LastName = "Murray",
 					BirthDate = DateOnly.Parse("1937-2-12"),
-                    Description = "Director of the world!",
+                    Description = "Actor of the world!",
                 },
 
-                new Director
+                new Actor
                 {
-                    FirstName = "Joanna",
-                    LastName = "Doe",
+                    FirstName = "Shishi",
+                    LastName = "Mishi",
                     BirthDate = DateOnly.Parse("1945-3-13"),
-                    Description = "Catch all ghosts in New York!",
+                    Description = "Yeeaaah",
                 }
             );
             context.SaveChanges();

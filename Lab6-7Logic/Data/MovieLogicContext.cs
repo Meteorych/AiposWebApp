@@ -11,5 +11,7 @@ namespace Lab6_7Logic.Data
 
         public DbSet<Lab6_7Logic.Models.Movie> Movie { get; set; } = default!;
         public DbSet<Lab6_7Logic.Models.Director> Director { get; set; } = default!;
+        public DbSet<Lab6_7Logic.Models.Actor> Actor { get; set; } = default!;
+        public DbSet<Lab6_7Logic.Models.Genre> Genre { get; set; } = default!;
     }
 }

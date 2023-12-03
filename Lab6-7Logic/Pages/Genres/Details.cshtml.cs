@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Movies
+namespace Lab6_7Logic.Pages.Genres
 {
     public class DetailsModel : PageModel
     {
@@ -14,7 +14,7 @@ namespace Lab6_7Logic.Pages.Movies
             _context = context;
         }
 
-        public Movie Movie { get; set; } = default!;
+        public Genre Genre { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -23,14 +23,14 @@ namespace Lab6_7Logic.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            var genre = await _context.Genre.FirstOrDefaultAsync(m => m.Id == id);
+            if (genre == null)
             {
                 return NotFound();
             }
             else
             {
-                Movie = movie;
+                Genre = genre;
             }
             return Page();
         }

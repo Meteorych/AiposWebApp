@@ -2,43 +2,45 @@
 using Lab6_7Logic.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lab6_7Logic.Pages.Directors
+namespace Lab6_7Logic.Pages.Genres
 {
-    public class SeedDataDirectors
+    public class SeedDataGenres
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using var context = new MovieLogicContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<MovieLogicContext>>());
-            if (context?.Director == null)
+            if (context?.Genre == null)
             {
                 throw new ArgumentNullException(nameof(context), "Null movie logic context!");
             }
 
             // Look for any movies.
-            if (context.Director.Any())
+            if (context.Genre.Any())
             {
                 return;   // DB has been seeded
             }
 
-            context.Director.AddRange(
-                new Director
+            context.Genre.AddRange(
+                new Genre
                 {
-                    FirstName = "John",
-                    LastName = "Doe",
-					BirthDate = DateOnly.Parse("1937-2-12"),
-                    Description = "Director of the world!",
+                    Name = "Comedy",
+                    Description = "Fun!",
                 },
 
-                new Director
+                new Genre
                 {
-                    FirstName = "Joanna",
-                    LastName = "Doe",
-                    BirthDate = DateOnly.Parse("1945-3-13"),
-                    Description = "Catch all ghosts in New York!",
-                }
-            );
+					Name = "Western",
+					Description = "Blood!",
+				},
+                new Genre
+                {
+					Name = "Romantic Comedy",
+					Description = "Fun and blood!",
+				}
+
+			);
             context.SaveChanges();
         }
     }

@@ -22,6 +22,33 @@ namespace Lab6_7Logic.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Lab6_7Logic.Models.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actor");
+                });
+
             modelBuilder.Entity("Lab6_7Logic.Models.Director", b =>
                 {
                     b.Property<int>("Id")
@@ -36,13 +63,37 @@ namespace Lab6_7Logic.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Director");
+                });
+
+            modelBuilder.Entity("Lab6_7Logic.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("Lab6_7Logic.Models.Movie", b =>
@@ -59,9 +110,8 @@ namespace Lab6_7Logic.Migrations
                     b.Property<int>("DirectorId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int[]>("GenreId")
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("MovieName")
                         .IsRequired()

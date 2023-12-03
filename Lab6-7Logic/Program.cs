@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Data;
+using Lab6_7Logic.Pages.Actors;
 using Lab6_7Logic.Pages.Directors;
+using Lab6_7Logic.Pages.Genres;
 using Lab6_7Logic.Pages.Movies;
 
 namespace Lab6_7Logic
@@ -22,15 +24,14 @@ namespace Lab6_7Logic
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
-                SeedDataMovies.Initialize(services);
-            }
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+                
                 SeedDataDirectors.Initialize(services);
+                SeedDataGenres.Initialize(services);
+                SeedDataMovies.Initialize(services);
+                SeedDataActors.Initialize(services);
+                
             }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

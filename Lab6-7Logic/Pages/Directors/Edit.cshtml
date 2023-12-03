@@ -15,9 +15,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Director.Id" />
             <div class="form-group">
-                <label asp-for="Director.Name" class="control-label"></label>
-                <input asp-for="Director.Name" class="form-control" />
-                <span asp-validation-for="Director.Name" class="text-danger"></span>
+                <label asp-for="Director.FirstName" class="control-label"></label>
+                <input asp-for="Director.FirstName" class="form-control" />
+                <span asp-validation-for="Director.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Director.LastName" class="control-label"></label>
+                <input asp-for="Director.LastName" class="form-control" />
+                <span asp-validation-for="Director.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Director.BirthDate" class="control-label"></label>

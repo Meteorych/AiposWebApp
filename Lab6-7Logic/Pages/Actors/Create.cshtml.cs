@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Movies
+namespace Lab6_7Logic.Pages.Actors
 {
     public class CreateModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Lab6_7Logic.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; } = default!;
+        public Actor Actor { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -29,7 +29,7 @@ namespace Lab6_7Logic.Pages.Movies
                 return Page();
             }
 
-            _context.Movie.Add(Movie);
+            _context.Actor.Add(Actor);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

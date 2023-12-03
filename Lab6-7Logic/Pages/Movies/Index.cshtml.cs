@@ -12,14 +12,18 @@ namespace Lab6_7Logic.Pages.Movies
         {
             _context = context;
         }
-        
+
         public IList<Movie> Movie { get;set; } = default!;
-        public IDictionary<int, Director> Director { get; set; } = default!;
+        public IDictionary<int, Director> Directors { get; set; }
+        public IDictionary<int, Genre> Genres { get; set; }
+        public IDictionary<int, Actor> MainActor { get; set; }
 
         public async Task OnGetAsync()
         {
             Movie = await _context.Movie.ToListAsync();
-            Director = await _context.Director.ToDictionaryAsync(director => director.Id);
+            Directors = await _context.Director.ToDictionaryAsync(director => director.Id);
+            Genres = await _context.Genre.ToDictionaryAsync(genre => genre.Id);
+            MainActor = await _context.Actor.ToDictionaryAsync(actor => actor.Id);
         }
     }
 }

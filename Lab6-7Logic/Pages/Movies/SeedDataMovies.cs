@@ -27,16 +27,16 @@ public static class SeedDataMovies
             {
                 MovieName = "When Harry Met Sally",
                 ReleaseDate = DateOnly.Parse("1989-2-12"),
-                Genre = "Romantic Comedy",
+                GenreId = new []{3},
                 Description = "Awesome dramedy!",
                 DirectorId = 1
             },
 
             new Movie
             {
-                MovieName = "Ghostbusters ",
+                MovieName = "Ghostbusters",
                 ReleaseDate = DateOnly.Parse("1984-3-13"),
-                Genre = "Comedy",
+                GenreId = new[] { 1 },
                 Description = "Catch all ghosts in New York!",
                 DirectorId = 1
             },
@@ -45,7 +45,7 @@ public static class SeedDataMovies
             {
                 MovieName = "Ghostbusters 2",
                 ReleaseDate = DateOnly.Parse("1986-2-23"),
-                Genre = "Comedy",
+                GenreId = new[]{1},
                 Description = "Sequel to cult film!",
                 DirectorId = 1
             },
@@ -54,7 +54,7 @@ public static class SeedDataMovies
             {
                 MovieName = "Rio Bravo",
                 ReleaseDate = DateOnly.Parse("1959-4-15"),
-                Genre = "Western",
+                GenreId = new []{2},
                 DirectorId = 1
             }
         );

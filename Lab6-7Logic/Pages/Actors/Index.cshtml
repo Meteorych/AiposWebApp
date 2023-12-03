@@ -1,5 +1,5 @@
 ﻿@page
-@model Lab6_7Logic.Pages.Directors.IndexModel
+@model Lab6_7Logic.Pages.Actors.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,22 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Director[0].FirstName)
+                @Html.DisplayNameFor(model => model.Actor[0].FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Director[0].LastName)
+                @Html.DisplayNameFor(model => model.Actor[0].LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Director[0].BirthDate)
+                @Html.DisplayNameFor(model => model.Actor[0].BirthDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Director[0].Description)
+                @Html.DisplayNameFor(model => model.Actor[0].Description)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Director) {
+@foreach (var item in Model.Actor) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

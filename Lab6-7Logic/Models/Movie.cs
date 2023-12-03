@@ -8,7 +8,7 @@ public class Movie
 
     public DateOnly? ReleaseDate { get; set; }
 
-    public string Genre { get; set; } = null!;
+    public int[]? GenreId { get; set; }
 
     public string? Description { get; set; }
 

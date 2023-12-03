@@ -1,5 +1,6 @@
 ﻿@page
 @using Lab6_7Logic.Models
+@using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow
 @model Lab6_7Logic.Pages.Movies.IndexModel
 
 @{
@@ -21,14 +22,14 @@
                 @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+                @Html.DisplayNameFor(model => model.Movie[0].GenreId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Description)
             </th>
-            <th>
-                <p>Director's name</p>
-            </th>
+	        <th>
+		        @Html.DisplayNameFor(model => model.Movie[0].DirectorId)
+	        </th>
             <th></th>
         </tr>
     </thead>
@@ -41,25 +42,38 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ReleaseDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
+	        <td>
+                @if (item.GenreId is null)
+                {
+                    <p>Empty</p>
+                }
+                else
+                {
+	                foreach (var genreId in item.GenreId)
+	                {
+		                if (Model.Genres.TryGetValue(genreId, out var genre))
+		                {
+			                <a asp-page="../Genres/Details" asp-route-id="@genre.Id">@genre.Name</a>
+		                }
+	                }
+                }
+	        </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-	            @if (Model.Director.TryGetValue(item.DirectorId, out var director))
-	            {
-                        <a asp-page="../Directors/Details" asp-route-id="@director.Id">@director.Name</a>
-	            }
-	            else
-	            {
-		            <p>Director is not in Database</p>
-	            }
+                @if (Model.Directors.TryGetValue(@item.DirectorId, out var director))
+                {
+	                <a asp-page="../Directors/Details" asp-route-id="@director.Id">@director.Name()</a>
+                }
+                else
+                {
+                    <p>Director doesn't exist in table!</p>
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-	            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
