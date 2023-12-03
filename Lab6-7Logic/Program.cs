@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Data;
+using Lab6_7Logic.Pages.Directors;
+using Lab6_7Logic.Pages.Movies;
+
 namespace Lab6_7Logic
 {
     public class Program
@@ -7,13 +10,27 @@ namespace Lab6_7Logic
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<Lab6_7LogicContext>(options =>
-                options.UseNpgsql(builder.Configuration.GetConnectionString("Lab6_7LogicContext") ?? throw new InvalidOperationException("Connection string 'Lab6_7LogicContext' not found.")));
-
+            builder.Services.AddDbContext<MovieLogicContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("MovieLogicContext") ?? throw new InvalidOperationException("Connection string 'MovieLogicContext' not found.")));
+            
+            
             // Add services to the container.
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                SeedDataMovies.Initialize(services);
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                SeedDataDirectors.Initialize(services);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -24,6 +41,7 @@ namespace Lab6_7Logic
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

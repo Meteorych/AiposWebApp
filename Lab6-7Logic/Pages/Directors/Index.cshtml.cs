@@ -1,8 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Lab6_7Logic.Data;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Movies
+namespace Lab6_7Logic.Pages.Directors
 {
     public class IndexModel : PageModel
     {
@@ -12,14 +18,12 @@ namespace Lab6_7Logic.Pages.Movies
         {
             _context = context;
         }
-        
-        public IList<Movie> Movie { get;set; } = default!;
-        public IDictionary<int, Director> Director { get; set; } = default!;
+
+        public IList<Director> Director { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movie.ToListAsync();
-            Director = await _context.Director.ToDictionaryAsync(director => director.Id);
+            Director = await _context.Director.ToListAsync();
         }
     }
 }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lab6_7Logic.Migrations
 {
-    [DbContext(typeof(Lab6_7LogicContext))]
-    partial class Lab6_7LogicContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MovieLogicContext))]
+    partial class MovieLogicContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,29 @@ namespace Lab6_7Logic.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Lab6_7Logic.Models.Director", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Director");
+                });
 
             modelBuilder.Entity("Lab6_7Logic.Models.Movie", b =>
                 {
@@ -32,6 +55,9 @@ namespace Lab6_7Logic.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
+
+                    b.Property<int>("DirectorId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Genre")
                         .IsRequired()

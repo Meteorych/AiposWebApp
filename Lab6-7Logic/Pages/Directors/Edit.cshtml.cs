@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Lab6_7Logic.Data;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Movies
+namespace Lab6_7Logic.Pages.Directors
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Lab6_7Logic.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; } = default!;
+        public Director Director { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace Lab6_7Logic.Pages.Movies
                 return NotFound();
             }
 
-            var movie =  await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            var director =  await _context.Director.FirstOrDefaultAsync(m => m.Id == id);
+            if (director == null)
             {
                 return NotFound();
             }
-            Movie = movie;
+            Director = director;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Lab6_7Logic.Pages.Movies
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            _context.Attach(Director).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Lab6_7Logic.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.Id))
+                if (!DirectorExists(Director.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace Lab6_7Logic.Pages.Movies
             return RedirectToPage("./Index");
         }
 
-        private bool MovieExists(int id)
+        private bool DirectorExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.Director.Any(e => e.Id == id);
         }
     }
 }

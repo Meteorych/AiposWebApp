@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Lab6_7Logic.Data;
 using Lab6_7Logic.Models;
 
-namespace Lab6_7Logic.Pages.Movies
+namespace Lab6_7Logic.Pages.Directors
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Lab6_7Logic.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; } = default!;
+        public Director Director { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace Lab6_7Logic.Pages.Movies
                 return Page();
             }
 
-            _context.Movie.Add(Movie);
+            _context.Director.Add(Director);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

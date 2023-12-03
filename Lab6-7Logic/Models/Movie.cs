@@ -1,6 +1,6 @@
 ﻿namespace Lab6_7Logic.Models;
 
-public partial class Movie
+public class Movie
 {
     public int Id { get; set; }
 
@@ -11,4 +11,6 @@ public partial class Movie
     public string Genre { get; set; } = null!;
 
     public string? Description { get; set; }
+
+    public int DirectorId { get; set; }
 }

@@ -2,13 +2,14 @@
 
 namespace Lab6_7Logic.Data
 {
-    public class Lab6_7LogicContext : DbContext
+    public class MovieLogicContext : DbContext
     {
-        public Lab6_7LogicContext (DbContextOptions<Lab6_7LogicContext> options)
+        public MovieLogicContext (DbContextOptions<MovieLogicContext> options)
             : base(options)
         {
         }
 
         public DbSet<Lab6_7Logic.Models.Movie> Movie { get; set; } = default!;
+        public DbSet<Lab6_7Logic.Models.Director> Director { get; set; } = default!;
     }
 }
