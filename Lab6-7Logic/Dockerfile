@@ -10,14 +10,15 @@ ARG BUILD_CONFIGURATION=Release
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["Lab6-7Logic.csproj", "Lab6-7Logic/"]
-RUN dotnet restore "/Lab6-7Logic.csproj"
+RUN dotnet restore "Lab6-7Logic/Lab6-7Logic.csproj"
+
+WORKDIR "/src/Lab6-7Logic"
 COPY . .
-WORKDIR "/src"
-RUN dotnet build "./Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Lab6-7Logic.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
